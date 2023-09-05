@@ -130,7 +130,7 @@ export const ListTransaction = styled
 
 `
 
-export const ButtonPower = styled(BorderlessButton)`
+export const ButtonPower = styled.TouchableOpacity`
 
 
 `

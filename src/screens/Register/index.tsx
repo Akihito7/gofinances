@@ -25,6 +25,7 @@ import { Button } from "../../components/Button";
 import { TransactionTypeButton } from "../../components/TransactionTypeButton";
 import { CategorySelectButton } from "../../components/Form/CategorySelectButton";
 import { CategorySelect } from "../CategorySelect";
+import { useAuth } from "../../hooks/Auth";
 
 interface FormTypes {
     name: string;
@@ -42,9 +43,11 @@ const schema = yup.object().shape({
 })
 
 export function Register() {
+
+    const { user } = useAuth()
     const navigation = useNavigation();
 
-    const nameAsyncStorage = "@gofinances:transactions";
+    const nameAsyncStorage = `@gofinances:transactions:userid${user.id}`;
 
     const [TransactionType, setTransacationType] = useState('');
     const [categoryModalOpen, setCategoryModalOpen] = useState(false);

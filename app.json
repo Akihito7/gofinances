@@ -2,10 +2,15 @@
   "expo": {
     "name": "gofinances",
     "slug": "gofinances",
-    "schema": "gofinances",
+    "scheme": "gofinances",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "54d4a4cf-0c41-4b96-8434-493c73a41af2"
+      }
+    }
   }
 }

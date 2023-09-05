@@ -1,6 +1,7 @@
 import styled from 'styled-components/native'
 import { SvgXml } from 'react-native-svg';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+import { Platform } from 'react-native'
 import theme from '../../global/styles/theme';
 
 interface ThemeProps{
@@ -22,6 +23,10 @@ align-items: center;
 gap: 30px;
 margin-top: ${RFPercentage(10)}px;
 margin-bottom: ${RFPercentage(5)}px;
+height: ${RFPercentage(60)}px;
+
+
+justify-content: center;
 
 `
 
@@ -76,7 +81,7 @@ width: 100%;
 gap: 24px;
 
 position: absolute;
-bottom:  60%;
+bottom:  ${Platform.OS === 'ios' ? 60 : 108}%;
 
 `
 export const ButtonLogin = styled.TouchableOpacity`
@@ -95,4 +100,11 @@ font-size: ${RFValue(14)}px;
 color: ${({ theme } : {theme: ThemeProps['theme']}) => theme.colors.text_dark};
 
 font-family: ${({ theme } : {theme: ThemeProps['theme']}) => theme.fonts.medium};
+`
+
+export const Loading = styled.View`
+background-color: ${({ theme } : {theme: ThemeProps['theme']}) => theme.colors.secondary};
+width: 100%;
+position: absolute;
+bottom: 5%;
 `

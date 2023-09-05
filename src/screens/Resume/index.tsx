@@ -29,6 +29,7 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { categories } from "../../utils/categories";
 import { RFValue } from "react-native-responsive-fontsize";
+import { useAuth } from "../../hooks/Auth";
 
 interface ItemProps {
     type: 'positive' | 'negative'
@@ -50,6 +51,7 @@ interface TotalByCategory {
 
 export function Resume() {
     
+    const { user } = useAuth();
     const theme = useTheme();
     
     const [totalByCategory, setTotalByCategory] = useState<TotalByCategory[]>();
@@ -57,12 +59,13 @@ export function Resume() {
     const [isLoading, setIsLoading] = useState(true);
     
     async function loadDataExpensives() {
+
     
         setIsLoading(true);
     
         let totalExpensiveByCategory: TotalByCategory[] = [];
     
-        const asyncName = '@gofinances:transactions';
+        const asyncName = `@gofinances:transactions:userid${user.id}`;
     
         const response = await AsyncStorage.getItem(asyncName);
     

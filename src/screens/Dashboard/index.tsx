@@ -19,7 +19,8 @@ import {
     Transactions,
     Title,
     ListTransaction,
-    Loading
+    Loading,
+    ButtonPower
 } from "./style";
 
 import { HighLightCard } from "../../components/HighlightCard";
@@ -34,6 +35,7 @@ interface User {
     id: string,
     email: string,
     name: string;
+    photo: string;
 }
 
 
@@ -46,9 +48,9 @@ interface UserProps {
 
 export function Dashboard() {
 
-    const { name } : UserProps['user'] = useAuth();
+    const { user, logout }  = useAuth();
 
-    const nameAsyncStorage = "@gofinances:transactions"
+    const nameAsyncStorage = `@gofinances:transactions:userid${user.id}`
 
     const [lastTransactionsController, setlastTransactionsController] = useState('');
     const [data, setData] = useState([]);
@@ -209,13 +211,16 @@ export function Dashboard() {
                     <Header >
                         <UserWrapper >
                             <UserInfo>
-                                <Photo source={{ uri: 'https://avatars.githubusercontent.com/u/121524719?v=4' }} />
+                                <Photo source={{ uri: `${user.photo}` }} />
                                 <User>
                                     <UserGreeting>Olá</UserGreeting>
-                                    <UserName>{name}</UserName>
+                                    <UserName>{user.name}</UserName>
                                 </User>
+                                
                             </UserInfo>
+                            <ButtonPower onPress={logout}>
                             <Icon name="power" />
+                            </ButtonPower>
                         </UserWrapper>
                     </Header>
 
